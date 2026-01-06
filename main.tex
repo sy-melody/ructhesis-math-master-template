@@ -1,0 +1,723 @@
+%Adapted by Melody SUI Yuan from the original template
+
+%\documentclass[12pt,a4paper]{ctexart}% XeLatex
+%\documentclass[UTF8]{ctexart}
+\documentclass[UTF8, a4paper, zihao=-4]{ctexart} %zihao=-4 表示小四号
+%\setmainfont{SimSun} % 设置正文为宋体
+\usepackage{indentfirst}% 首行缩进宏包
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{geometry}% 设计版面大小
+\geometry{left=3.5cm,right=3.0cm,top=4.5cm,bottom=4.0cm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{bm}
+\usepackage{pgfplots}
+\usepackage{CJK}
+\usepackage{caption}
+\usepackage{mathrsfs,amsfonts}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{indentfirst}
+\usepackage{relsize}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{diagbox}
+\usepackage[noblocks]{authblk}
+\usepackage{graphicx}
+\usepackage{subcaption} % 引入子图及子标题功能,可方便调整子图间距等
+%\usepackage{subfigure}
+
+%新增lstlisting环境所需宏包
+\usepackage{listings} % 核心lstlisting宏包
+\usepackage{xcolor}   % 语法高亮颜色支持
+\usepackage{courier}  % 等宽字体，适配代码展示
+
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{epstopdf}
+\usepackage{titlesec}
+\usepackage{xeCJK} % 如果需要中英混排支持
+% 设置 section 标题样式
+\titleformat{\section}[block]{\centering\fontsize{18pt}{20pt}\bfseries\sffamily}{第\thesection\ 章}{1em}{}
+% 设置 subsection 标题样式
+\titleformat{\subsection}[hang]{\fontsize{14pt}{16pt}\bfseries\sffamily}{\thesubsection}{1em}{}
+% 设置 subsubsection 标题样式
+\titleformat{\subsubsection}[hang]{\fontsize{12pt}{14pt}\bfseries\sffamily}{\thesubsubsection}{1em}{}
+
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{booktabs, longtable}
+\usepackage{threeparttable}
+\usepackage{makecell}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\setlength{\baselineskip}{20pt}% 行间距20pt
+\setlength{\parskip}{1ex}% 段距
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\texttt{论文中文标题}}%页眉
+\fancyfoot[ER,OR]{\normalsize\thepage}% 页脚
+
+\usepackage{titletoc}% 设置目录格式
+\titlecontents{section}[0pt]{\vspace{.25\baselineskip}\large\bfseries}
+     {\thecontentslabel\quad}{}
+     {\hspace{.5em}\titlerule*[0.5pc]{$\cdot$}\contentspage} %一级标题设置
+\titlecontents{subsection}[2em]
+     {\vspace{0\baselineskip}}
+     {\thecontentslabel\quad}{}
+     {\hspace{.5em}\titlerule*[0.5pc]{$\cdot$}\contentspage}% 二级标题设置
+\titlecontents{subsubsection}[3em]
+     {\vspace{0\baselineskip}}
+     {\thecontentslabel\quad}{}
+     {\hspace{.5em}\titlerule*[0.5pc]{$\cdot$}\contentspage}% 三级标题设置
+
+%\let\itemize\compactitem
+\let\enditemize\endcompactitem
+%\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+\usepackage{euscript}
+\newcommand*\euler[1]{\ensuremath{\EuScript{#1}}}
+
+\renewcommand\contentsname{目\quad 录}
+\CTEXsetup[name={第,章}]{section}%第几章节
+\newtheorem{theorem}{定理}[section]%按章节号
+\newtheorem{definition}{定义}[section]
+\newtheorem{lemma}{引理}[section]
+\newtheorem{proposition}{性质}[section]
+\newtheorem{corollary}{推论}[section]
+\newtheorem{rmk}{注}[section]
+\numberwithin{equation}{section}% 公式按章节编号
+\usepackage[unicode,
+            pdfstartview=FitH,
+            colorlinks=true,
+            citecolor=magenta,
+            linkcolor=blue,
+            linktocpage=true,
+            ]{hyperref}
+\hypersetup{unicode,pageanchor=false}
+\usepackage{hypbmsec}
+\usepackage{cite}
+\usepackage{url}
+
+% 定义标题四层深度
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}\mbox{}\\}
+\setcounter{secnumdepth}{4} 
+\setcounter{tocdepth}{4} 
+
+\begin{document}
+
+% 设置罗马数字页码
+\pagenumbering{roman} % 开始使用罗马数字页码
+
+%前3页为匹配在职研模板添加，经数学学院在职研相关负责老师审核可直接复制使用，如为全日制研究生，可注释掉不使用或根据学院相应要求进行微调
+
+% 新增第1页：封面页
+\begin{titlepage}
+    \centering
+%    \vspace*{2cm}
+    \includegraphics[width=0.45\linewidth]{title.jpg}
+    
+    {\zihao{0} \bfseries 硕\ 士\ 学\ 位\ 论\ 文 \\     \vspace{0.5cm} \zihao{-4} THESIS OF MASTER DEGREE} \\     
+    \vspace{4cm}
+    
+    {\zihao{-4} 
+    \begin{tabular}{cp{10cm}}
+        \bfseries 论文题目： & \underline{\makebox[10cm][c]{（请填写）}} \\ \specialrule{0pt}{1.5ex}{1.5ex} \bfseries （英文）： & \underline{\makebox[10cm][c]{（请填写）}} \\
+    \end{tabular}}
+    
+    \vspace{2cm}
+    
+    {\zihao{-4}
+    \begin{tabular}{cp{10cm}}
+        \bfseries 作\ \ \ \ \ 者： & \underline{\makebox[10cm][c]{（请填写）}} \\ \specialrule{0pt}{1.5ex}{1.5ex}
+        \bfseries 指导教师： & \underline{\makebox[10cm][c]{（请填写）}} \\
+    \end{tabular}}
+    
+    \vfill
+    {\zihao{-4} 2026\ \ 年\ \ **\ \ 月\ \ **\ \ 日} % 日期可自行修改
+\end{titlepage}
+
+%新增第2页：基本信息表
+\begin{titlepage}
+    \centering
+%    \vspace*{1cm}
+  \includegraphics[width=0.55\linewidth]{ruc_logo.png}
+
+    {\zihao{1} \heiti 硕\ 士\ 学\ 位\ 论\ 文} \\
+    \vspace{2cm}
+    
+    \renewcommand{\arraystretch}{2} % 增加表格行高
+    \zihao{4} 
+    \begin{tabular}{cp{10cm}}
+        （中文题目） & \underline{\makebox[10cm]{（请填写）}} \\
+        （英文题目） & \underline{\makebox[10cm]{（请填写）}}  \\ 
+        & \\
+        资格卡号：   & \underline{\makebox[10cm]{（请填写）}}  \\
+        作者姓名：   & \underline{\makebox[10cm]{（请填写）}} \\ 
+        所在学院：   & \underline{\makebox[10cm]{（请填写）}}  \\ 
+        专业名称：   &\underline{\makebox[10cm]{（请填写）}} \\
+        导师姓名：   &\underline{\makebox[10cm]{（请填写）}}  \\ 
+        论文主题词： & \underline{\makebox[10cm]{（请填写）}}  \\ 
+        论文提交日期： & \underline{\makebox[10cm]{（请填写）}} 
+    \end{tabular}
+\end{titlepage}
+
+\newpage
+
+%新增第3页：论文使用授权说明
+\begin{titlepage}
+    \centering
+%    \vspace*{1cm}
+    {\zihao{2} \bfseries 独\ 创\ 性\ 声\ 明} \\
+    \vspace{1cm}
+    \begin{flushleft}
+    %\fontsize{12pt}{20pt}\selectfont
+    \zihao{4}
+    \hspace{2em}本人郑重声明：所呈交的论文是我个人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写的研究成果，也不包含为获得中国人民大学或其他教育机构的学位或证书所使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。 
+    \end{flushleft}
+    \vspace{1cm}
+    \begin{flushright}
+        论文作者签名：\underline{\makebox[4cm]{}} \quad 日期：\underline{\makebox[3cm]{}}
+    \end{flushright}
+    
+    \vspace{2cm}
+    
+    {\zihao{2} \bfseries 关于论文使用授权的说明} \\
+    \vspace{1cm}
+    \begin{flushleft}
+    %\fontsize{12pt}{20pt}\selectfont
+    \zihao{4}
+    \hspace{2em}本人完全了解中国人民大学有关保留、使用学位论文的规定，即：学校有权保留送交论文的复印件，允许论文被查阅和借阅；学校可以公布论文的全部或部分内容，可以采用影印、缩印或其他复制手段保存论文。 
+    \end{flushleft}
+    \vspace{1cm}
+    \begin{flushright}
+        论文作者：\underline{\makebox[4cm]{}} 
+        \quad 日期：\underline{\makebox[3cm]{}} \\
+        \vspace{0.5cm} 指导教师：\underline{\makebox[4cm]{}} \quad 日期：\underline{\makebox[3cm]{}}
+    \end{flushright}
+\end{titlepage}
+
+\newpage
+
+%模板中的填充文字为参考写作指导以及案例，由生成式人工智能结合专业特点辅助生成，占位用，如有需要可参考
+
+
+% 摘要（中文）
+\begin{titlepage}
+\pdfbookmark[1]{摘要}{anchor}
+
+\vspace*{\stretch{1}}
+\begin{center}
+{\Huge \bfseries 摘\quad 要} \\[1ex]
+\end{center}
+\vspace{\baselineskip}
+
+\begin{center}
+\parbox{\textwidth}{
+    \hspace{2em}摘要应当对全文内容进行高度概括，
+    是读者在最短时间内了解论文核心内容的主要途径。一般而言，摘要应包括以下要素：
+    研究背景、研究问题、所采用的数学模型或数值方法、主要理论或数值结果，以及研究的意义或潜在应用。对于计算数学方向的论文，摘要中应明确指出所研究的问题类型（如常微分方程、偏微分方程或数值算法），并点明所使用的方法类别（如 Runge--Kutta 方法、有限差分法或有限元法等）。摘要应避免出现推导细节、公式编号和文献引用，并具有独立可读性。
+
+    \vspace{1em}
+    \noindent \textbf{关键词:} 数值方法，数学模型，误差分析
+}
+\end{center}
+
+\vspace*{\stretch{2}}
+\end{titlepage}
+
+\newpage
+
+
+% Abstract（英文）
+\begin{titlepage}
+\pdfbookmark[2]{Abstract}{anchor}
+
+\begin{center}
+{\Huge \bfseries Abstract} \\[1ex]
+\end{center}
+
+\begin{center}
+\parbox{\textwidth}{
+        \hspace{2em}The abstract provides a concise and self-contained summary of the thesis. It typically includes the research background, the mathematical model under consideration, the numerical methods employed, and the main theoretical or computational results. For a master's thesis in computational mathematics, it is recommended to clearly state the type of problem studied and the numerical techniques used, such as Runge--Kutta methods or other standard numerical schemes.
+        
+    \vspace{1em}
+    
+    \noindent \textbf{Keywords:} Numerical methods, mathematical modeling
+}
+\end{center}
+
+\end{titlepage}
+
+\newpage
+
+% 目录、图表页
+\pdfbookmark[1]{目\ 录}{anc}
+\tableofcontents
+\newpage
+
+\listoffigures
+\newpage
+
+\listoftables
+\newpage
+
+% 正文开始
+\cleardoublepage
+\pagenumbering{arabic}
+
+%第1章
+\section{引\ \ 言}
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{page}{1}
+
+\subsection{研究背景}
+
+本节应当采用\textbf{“倒金字塔型”}写作结构，
+即从宏观背景逐步聚焦到具体研究问题。
+
+在科学计算与工程应用中，
+大量实际问题可归结为微分方程或代数系统的求解问题。
+由于这些问题往往不存在解析解，
+数值方法成为研究和应用中的主要工具。
+随着计算能力的提升，
+对数值算法精度、稳定性和效率的要求也不断提高。
+
+在这一背景下，
+研究合理的数学模型并分析相应数值方法的性能，
+具有重要的理论与实践意义。
+
+\subsection{研究意义}
+
+研究意义通常从理论意义和应用意义两个层面进行阐述。
+
+从理论角度看，
+系统分析数值方法的误差阶、稳定性及收敛性，
+有助于加深对算法性质的理解，
+并为方法的改进或推广提供理论依据。
+
+从应用角度看，
+稳定且高效的数值算法
+能够提高计算结果的可靠性，
+在工程计算、物理建模和交叉学科研究中具有实际价值。
+
+\subsection{文献综述}
+
+如果某一研究问题在现有文献中已经得到了充分解决，
+那么继续开展类似研究在逻辑上是缺乏必要性的。
+因此，文献综述的核心目标在于说明：
+\textbf{现有研究仍存在不足或研究空白}。
+
+本节应大量引用相关文献，
+但不应是简单的资料罗列，
+而应结合自身研究方向，
+对已有成果进行分析、比较和评价，
+并明确指出本文工作的切入点。
+
+\subsubsection{相关学科背景及已有研究}
+
+已有研究表明\cite{doi:10.1137/0709037}，
+经典 Runge--Kutta 方法
+在求解非刚性常微分方程方面具有良好性能。
+同时，多步法和隐式方法
+在处理刚性问题时具有一定优势。
+
+部分研究通过数值实验比较不同算法的误差和计算效率，
+为算法选择提供了经验依据。
+然而，这些研究通常针对特定模型，
+其结论在更一般情形下仍有待进一步验证。
+
+\subsubsection{相关数学模型}
+
+多数文献围绕如下初值问题展开：
+\begin{equation}
+\begin{cases}
+y'(t) = f(t,y), \\
+y(t_0) = y_0,
+\end{cases}
+\end{equation}
+并通过构造不同的数值格式进行求解。
+
+尽管相关研究在算法构造方面较为成熟，
+但在某些模型参数或数值稳定性分析方面仍存在不足，
+这正是本文进一步研究的动机。
+
+\subsection{主要工作与组织结构}
+
+本文主要开展以下工作：
+\begin{itemize}
+  \item 介绍相关数学模型与数值方法的理论基础；
+  \item 构建并分析适用的数值求解模型；
+  \item 通过数值实验验证理论分析结果。
+\end{itemize}
+
+全文结构安排如下：
+第二章介绍相关理论与数值方法；
+第三章给出模型构建与理论分析；
+第四章展示数值结果并进行讨论；
+第五章对全文进行总结与展望。
+
+%第2章
+\newpage
+\section{相关理论及方法}
+
+\subsection{常微分方程模型}
+
+在计算数学中，
+大量问题可归结为常微分方程初值问题。
+为便于说明，本文考虑如下模型：
+\begin{equation}
+y'(t) = f(t,y),
+\end{equation}
+其中 $f(t,y)$ 为已知函数。
+
+\subsection{数值方法简介}
+
+以经典四阶 Runge--Kutta 方法为例，
+其计算格式如下：
+\begin{align}
+k_1 &= f(t_n, y_n),\\
+k_2 &= f\left(t_n+\frac{h}{2}, y_n+\frac{h}{2}k_1\right),\\
+k_3 &= f\left(t_n+\frac{h}{2}, y_n+\frac{h}{2}k_2\right),\\
+k_4 &= f(t_n+h, y_n+hk_3),\\
+y_{n+1} &= y_n + \frac{h}{6}(k_1+2k_2+2k_3+k_4).
+\end{align}
+
+该方法在光滑条件下具有四阶精度，
+是数值分析中常用的基准算法。
+
+\subsection{Runge--Kutta方法的基本理论性质}
+
+\subsubsection{一致性与收敛性的基本概念}
+
+\begin{definition}
+设一步数值方法用于求解常微分方程初值问题 \eqref{eq:ivp}。
+若当步长 $h \to 0$ 时，该方法的局部截断误差满足
+\[
+\tau_n = \mathcal{O}(h^{p+1}),
+\]
+则称该方法为 $p$ 阶一致的（consistent）。
+\end{definition}
+
+\begin{proposition}
+若一步数值方法是 $p$ 阶一致的，
+则其局部截断误差在每一步上均随 $h \to 0$ 收敛于零。
+\end{proposition}
+
+\begin{proof}
+该结论直接由一致性的定义得到，
+因为 $\mathcal{O}(h^{p+1}) \to 0$ 当 $h \to 0$。
+\end{proof}
+
+\begin{lemma}
+\label{lem:smoothness}
+设函数 $f(t,y)$ 关于 $t$ 与 $y$ 至少具有四阶连续偏导数，
+则对应初值问题 \eqref{eq:ivp} 的精确解 $y(t)$ 在任意有限区间上
+具有至多四阶连续导数。
+\end{lemma}
+
+\begin{proof}
+该结论由常微分方程解的正则性理论直接得到，
+此处不再展开证明。
+\end{proof}
+
+\begin{theorem}
+\label{thm:rk4_order}
+在 Lemma~\ref{lem:smoothness} 的条件下，
+经典四阶 Runge--Kutta 方法具有四阶一致性。
+\end{theorem}
+
+\begin{proof}
+根据 RK4 的阶段构造，
+结合精确解在 $t_n$ 处的 Taylor 展开，
+可以验证该方法在一步内的局部截断误差为
+\[
+\tau_n = \mathcal{O}(h^5)。
+\]
+因此，该方法是四阶一致的。
+\end{proof}
+
+\begin{corollary}
+若函数 $f(t,y)$ 进一步满足 Lipschitz 条件，
+则经典四阶 Runge--Kutta 方法在有限时间区间上
+具有四阶全局收敛性。
+\end{corollary}
+
+\begin{proof}
+该结论由一致性与零稳定性共同蕴含收敛性的经典定理得到。
+\end{proof}
+
+\begin{rmk}
+在本文后续的数值实验中，
+我们主要关注四阶 Runge--Kutta 方法的实际误差表现，
+而不再重复其阶数验证过程。
+该选择在计算数学的应用型研究中是较为常见的。
+\end{rmk}
+
+
+%第3章
+\newpage
+\section{模型与理论分析}
+
+\subsection{数值模型构建}
+
+通过将连续模型离散化，
+可将微分方程转化为递推格式。
+该过程的合理性直接影响数值结果的准确性与稳定性。
+
+\subsection{理论分析}
+
+\subsubsection{平衡点分析}
+
+为分析数值方法的稳定性，
+常引入线性测试方程：
+\begin{equation}
+y' = \lambda y,
+\end{equation}
+其中 $\lambda$ 为复数。
+该模型虽形式简单，
+却能够反映数值方法的核心稳定性特征。
+
+\subsubsection{稳定性分析}
+
+将数值格式作用于测试方程，
+可得到放大因子 $R(z)$，
+其中 $z=h\lambda$。
+当满足
+\begin{equation}
+ |R(z)| \leq 1   
+\end{equation}
+
+时，数值方法在该参数范围内是稳定的。
+
+%第4章
+\newpage
+\section{研究结果与分析}
+
+为验证理论分析结果，
+本文选取典型算例进行数值实验。
+
+\begin{table}[h]
+\centering
+\caption{不同步长下的数值误差比较}
+\begin{tabular}{c c c}
+\toprule
+步长 $h$ & 误差 & 收敛阶 \\
+\midrule
+0.1 & $1.2\times10^{-4}$ & -- \\
+0.05 & $7.5\times10^{-6}$ & $\approx4$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{example-image-a.pdf}
+\caption{数值解误差随时间变化示意图}
+\end{figure}
+
+实验结果与理论分析结果一致，
+验证了所采用方法的有效性。
+
+%第5章
+\newpage
+\section{总结与展望}
+
+本文围绕一类典型数学模型，
+系统研究了其数值求解方法及理论性质。
+通过理论分析与数值实验相结合，
+验证了所用算法的稳定性与精度。
+
+未来工作可进一步考虑
+自适应步长策略、
+高维模型或随机扰动情形，
+以拓展本文研究的适用范围。
+
+%参考文献
+\newpage
+\addcontentsline{toc}{section}{参考文献}
+\bibliographystyle{plain}
+%请把bibTex格式的引用放到replicator.bib文件中，即可在参考文献处显示
+\bibliography{replicator}
+
+%致谢
+\newpage
+\section*{致\quad 谢}
+\addcontentsline{toc}{section}{致\space 谢}
+
+感谢导师在研究过程中的耐心指导，以及同学们在讨论中提供的宝贵建议。感谢学校，感谢国家，感谢党！
+
+感谢学校，感谢国家，感谢党！感谢学校，感谢国家，感谢党！感谢学校，感谢国家，感谢党！感谢学校，感谢国家，感谢党！感谢学校，感谢国家，感谢党！感谢学校，感谢国家，感谢党！
+
+%附录
+\newpage
+\section*{附\quad 录}
+\addcontentsline{toc}{section}{附\space 录}
+附录中可给出较长的推导过程、
+补充证明或程序实现细节。举例如下：
+
+\subsection*{Runge--Kutta 方法一致性的补充证明}
+
+本附录给出本文在正文中使用但未展开的一个基础理论结果的详细证明过程。
+该证明主要用于说明经典四阶 Runge--Kutta 方法（RK4）满足一致性条件，
+从而为其收敛性结论提供理论支撑。
+
+需要强调的是，本附录的目的并非重复教科书中的全部推导，
+而是示范如何在计算数学论文中书写一个\textbf{结构清晰、逻辑自洽、但篇幅受控的补充证明}。
+
+\subsubsection*{问题设定与基本定义}
+
+考虑常微分方程初值问题
+\begin{equation}
+\label{eq:ivp}
+\begin{cases}
+y'(t) = f(t, y(t)), \\
+y(t_0) = y_0,
+\end{cases}
+\end{equation}
+其中函数 $f(t,y)$ 在其定义域内足够光滑。
+
+\begin{definition}
+若一个一步数值格式在步长 $h \to 0$ 时，其局部截断误差满足
+\[
+\tau_{n} = \mathcal{O}(h^{p+1}),
+\]
+则称该方法是 $p$ 阶\textbf{一致的}（consistent）。
+\end{definition}
+
+一致性是数值方法收敛性的必要条件，
+在实际论文写作中，通常只需给出关键阶数的论证，
+而不必对所有中间项进行冗长展开。
+
+\subsubsection*{局部截断误差的阶分析}
+
+经典四阶 Runge--Kutta 方法（RK4）可写为
+\begin{align}
+k_1 &= f(t_n, y_n), \\
+k_2 &= f\left(t_n + \tfrac{h}{2}, y_n + \tfrac{h}{2} k_1 \right), \\
+k_3 &= f\left(t_n + \tfrac{h}{2}, y_n + \tfrac{h}{2} k_2 \right), \\
+k_4 &= f\left(t_n + h, y_n + h k_3 \right),
+\end{align}
+并更新解为
+\begin{equation}
+y_{n+1} = y_n + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4).
+\end{equation}
+
+\begin{lemma}
+\label{lem:taylor}
+若 $f(t,y)$ 关于 $t$ 和 $y$ 至少四阶连续可微，
+则精确解 $y(t_{n+1})$ 在 $t_n$ 处的 Taylor 展开可写为
+\[
+y(t_{n+1}) = y(t_n) + h y'(t_n) + \frac{h^2}{2} y''(t_n)
++ \frac{h^3}{6} y^{(3)}(t_n)
++ \frac{h^4}{24} y^{(4)}(t_n)
++ \mathcal{O}(h^5).
+\]
+\end{lemma}
+
+\begin{proof}
+该结论直接由多元函数 Taylor 展开定理得到，
+这里省略标准推导过程。
+在实际论文中，对于此类广为人知的基础结论，
+只需说明其来源而不必重复证明。
+\end{proof}
+
+\subsubsection*{一致性的证明}
+
+\begin{theorem}
+\label{thm:rk4_consistency}
+经典四阶 Runge--Kutta 方法是四阶一致的，
+即其局部截断误差满足
+\[
+\tau_n = \mathcal{O}(h^5).
+\]
+\end{theorem}
+
+\begin{proof}
+在局部截断误差的定义中，
+我们假设数值格式的初值取为精确解 $y(t_n)$，
+并比较一步数值解 $y_{n+1}$ 与精确解 $y(t_{n+1})$ 之间的差异。
+
+将精确解代入 RK4 的四个阶段点，
+并利用 Lemma~\ref{lem:taylor} 对 $f(t,y)$ 在 $(t_n, y(t_n))$ 处展开，
+可以验证 RK4 的加权组合恰好抵消了所有 $h^4$ 及以下阶的误差项。
+
+因此，剩余误差项的最低阶为 $h^5$，
+从而得到
+\[
+\tau_n = \mathcal{O}(h^5).
+\]
+
+完整的代数展开较为冗长，
+但其核心思想在于 RK4 系数满足相应的 Butcher 阶条件。
+\end{proof}
+
+\subsubsection*{直接推论与说明}
+
+\begin{corollary}
+若函数 $f(t,y)$ 满足 Lipschitz 条件，
+则经典四阶 Runge--Kutta 方法在有限时间区间上是四阶收敛的。
+\end{corollary}
+
+\begin{proof}
+该结论由数值 ODE 理论中的一致性与零稳定性蕴含收敛性定理直接得到。
+由于 RK4 是显式单步法，其零稳定性是平凡成立的。
+\end{proof}
+
+\begin{rmk}
+在正式论文中，
+类似 RK4 阶数证明这样的内容非常适合放入附录，
+既保证了论文的完整性，
+又避免了在正文中打断建模或算法分析的主线叙述。
+\end{rmk}
+
+\subsection*{示例程序}
+本附录给出了本文数值实验中所使用的经典四阶 Runge--Kutta 方法（RK4）的示例程序，用于求解常微分方程初值问题，该程序采用 Python 语言实现。
+\begin{lstlisting}[
+language=Python,
+basicstyle=\ttfamily\small,
+keywordstyle=\color{blue},
+commentstyle=\color{gray},
+stringstyle=\color{red},
+frame=single,
+numbers=left,
+numberstyle=\tiny
+]
+import numpy as np
+
+def f(t, y):
+    return -y
+
+def runge_kutta_4(f, t0, y0, h, N):
+
+    #四阶 Runge-Kutta 方法
+
+    t = np.zeros(N+1)
+    y = np.zeros(N+1)
+    
+    t[0] = t0
+    y[0] = y0
+
+    for n in range(N):
+        k1 = f(t[n], y[n])
+        k2 = f(t[n] + h/2, y[n] + h*k1/2)
+        k3 = f(t[n] + h/2, y[n] + h*k2/2)
+        k4 = f(t[n] + h, y[n] + h*k3)
+
+        y[n+1] = y[n] + h*(k1 + 2*k2 + 2*k3 + k4)/6
+        t[n+1] = t[n] + h
+
+    return t, y
+
+# 示例计算
+t, y = runge_kutta_4(f, t0=0.0, y0=1.0, h=0.1, N=50)
+\end{lstlisting}
+
+\end{document}
